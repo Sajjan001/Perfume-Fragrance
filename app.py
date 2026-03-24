@@ -1,5 +1,6 @@
 import streamlit as st
 import pickle
+import gzip
 import numpy as np
 import time
 
@@ -11,7 +12,8 @@ st.set_page_config(
 )
 
 # Load model & encoders
-model = pickle.load(open("model.pkl", "rb"))
+with gzip.open("model.pkl", "rb") as f:
+    model = pickle.load(f)
 encoders = pickle.load(open("encoders.pkl", "rb"))
 
 # Custom CSS with modern design
